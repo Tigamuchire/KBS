@@ -30,7 +30,7 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.inception_v3 import preprocess_input, decode_predictions
 
-app = Flask(__name__, template_folder='C:/Users/Lenovo/Documents/KBS/templates')
+app = Flask(__name__, template_folder='templates')
 
 # Create the 'uploads' directory if it doesn't exist
 if not os.path.exists('uploads'):
