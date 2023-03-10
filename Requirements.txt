@@ -1,0 +1,11 @@
+flask
+numpy
+tensorflow
+keras
+pathlib
+shutil
+random
+warnings
+glob
+opencv-python
+os
