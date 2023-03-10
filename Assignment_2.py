@@ -14,13 +14,72 @@ model = InceptionV3(weights='imagenet')
 graph = tf.compat.v1.get_default_graph()
 
 
+# In[41]:
+
+
+# freezing the weights of the model
+for layer in model.layers:
+    layer.trainable = False
+
+
+# In[30]:
+
+
+import glob
+from keras.preprocessing.image import ImageDataGenerator
+from keras.applications.inception_v3 import decode_predictions
+from keras.preprocessing import image
+from keras.optimizers import Adam
+from keras.metrics import binary_crossentropy
+from keras.preprocessing.image import ImageDataGenerator
+from keras.layers import Activation, Dense, Flatten, BatchNormalization, Conv2D, MaxPool2D
+from pathlib import Path
+import shutil
+import itertools
+import random
+import warnings
+
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
+
 # In[2]:
 
 
 get_ipython().system('pip install opencv-python')
 
 
-# In[ ]:
+# In[42]:
+
+
+# last layer for feature extraction
+last_layer =model.get_layer('mixed7')
+print('last layer output shape:', last_layer.output_shape)
+last_output = last_layer.output
+
+
+# In[45]:
+
+
+from keras import Model
+from keras import layers
+
+from keras.optimizers import RMSprop
+
+# Flattenning the output layer to 1 dimension
+x = layers.Flatten()(last_output)
+x = layers.Dense(1024, activation='relu')(x)
+# Adding a dropout rate of 0.2
+x = layers.Dropout(0.2)(x)
+x = layers.Dense(1, activation='sigmoid')(x)
+
+# Configure and compile the model
+model1 = Model(model.input, x)
+model1.compile(loss='binary_crossentropy',
+              optimizer=Adam(learning_rate=0.0001),
+              metrics=['acc'])
+
+
+# In[39]:
 
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
@@ -107,11 +166,12 @@ def split_video(video_path):
 
 def detect_objects(frames):
     # Load the pre-trained Inception V3 model
-    model = tf.keras.applications.InceptionV3(weights='imagenet')
+    model1 = tf.keras.applications.InceptionV3(weights='imagenet')
+    
     frames = np.resize(frames, (frames.shape[0], 299, 299, 3))
 
     # Make predictions on the frames
-    predictions = model.predict(frames)
+    predictions = model1.predict(frames)
 
     # Decode the predictions
     decoded_predictions = decode_predictions(predictions, top=3)
@@ -122,6 +182,18 @@ def detect_objects(frames):
 if __name__ == '__main__':
     app.config['UPLOAD_FOLDER'] = 'uploads'
     app.run(debug=True, use_reloader=False)
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
