@@ -1,0 +1,53 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://www.pythonanywhere.com/user/butterfly3/files/home/butterfly3/mysite/templates/results.html
+Subject: computer vision
+Date: Sun, 12 Mar 2023 17:10:24 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--CLpmmCp91iYC1jf6WovOB0LqcUbyKGOK3IqR8oZNW8----"
+
+
+------MultipartBoundary--CLpmmCp91iYC1jf6WovOB0LqcUbyKGOK3IqR8oZNW8----
+Content-Type: text/html
+Content-ID: <frame-FE6011ED38C8DD4177DD557CACC2DD49@mhtml.blink>
+Content-Transfer-Encoding: binary
+Content-Location: https://www.pythonanywhere.com/user/butterfly3/files/home/butterfly3/mysite/templates/results.html
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+	<title>computer vision</title>
+    </head>
+    <body>
+                                                    <h2>Predicting objects in your video</h2>
+
+    <h2>Search for an object</h2>
+    <p><b>Note that only object in predicted object list will be shown their images. See full list of all predicted objects below. Wait for image to load to see all results</b></p>
+    <form>
+          <label>Word</label><input id="word">
+      	  <input type="button" value="search" id="submitButton">
+      </form>
+
+     <p id="story"> </p>
+     <a id="image"></a>
+
+     <hr>
+     <h2> List of all objects</h2>
+    <p>Objects in the video and the confidence of the model on them being the object. An image is show to highlight in which frame the object was observed.</p>
+
+    <p>Name of your file:<b> {{name}}</b></p>
+	{% for obj in message %}
+        <p>{{obj[0]}}------{{obj[2]}}</p>
+    {% endfor %}
+
+    <hr>
+
+
+      {% block javascript %}
+      
+
+      {% endblock %}
+
+
+</body></html>
+------MultipartBoundary--CLpmmCp91iYC1jf6WovOB0LqcUbyKGOK3IqR8oZNW8------

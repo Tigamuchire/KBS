@@ -1,0 +1,38 @@
+From: <Saved by Blink>
+Snapshot-Content-Location: https://www.pythonanywhere.com/user/butterfly3/files/home/butterfly3/mysite/templates/index.html
+Subject: computer vision
+Date: Sun, 12 Mar 2023 17:09:57 -0000
+MIME-Version: 1.0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="----MultipartBoundary--w76zQykQv8W2kAqZBOIrNRQ8pONqdit2OE0N9mbQIa----"
+
+
+------MultipartBoundary--w76zQykQv8W2kAqZBOIrNRQ8pONqdit2OE0N9mbQIa----
+Content-Type: text/html
+Content-ID: <frame-FE6011ED38C8DD4177DD557CACC2DD49@mhtml.blink>
+Content-Transfer-Encoding: binary
+Content-Location: https://www.pythonanywhere.com/user/butterfly3/files/home/butterfly3/mysite/templates/index.html
+
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>computer vision</title>
+</head>
+<body>
+
+                                                      <h2>Computer Vision Object detection</h2>
+	<h3>Select a video of not more than 10mb to detect objects and eventually search by name/label</h3>
+      <form action="http://butterfly3.pythonanywhere.com/pred" method="POST" enctype="multipart/form-data">
+         <input type="file" name="file" accept="video/*" id="input_file">
+         <br>
+         <br>
+         <br>
+         <input type="submit" value="see predicted items in video">
+      </form>
+
+      
+
+
+
+</body></html>
+------MultipartBoundary--w76zQykQv8W2kAqZBOIrNRQ8pONqdit2OE0N9mbQIa------
